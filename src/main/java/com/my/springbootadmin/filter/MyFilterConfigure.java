@@ -15,6 +15,7 @@ public class MyFilterConfigure {
 
         filterRegister.setFilter(new MyFilter());
         filterRegister.addUrlPatterns("/*");
+        filterRegister.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/reg");
         filterRegister.setName("MyFilter");
         filterRegister.addInitParameter("paramName", "paramValue");
         filterRegister.setOrder(1);

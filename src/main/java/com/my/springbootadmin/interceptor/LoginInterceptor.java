@@ -23,18 +23,19 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         logger.info("[LoginInterceptor]登录检测start");
-        HttpSession session = request.getSession(false);
         //如果session中存在账户信息，则继续执行，反之，则跳转到登录页面
+        /*HttpSession session = request.getSession(false);
         if(session == null){
             session = request.getSession();
             session.setAttribute("loginAccount", new CoreAccount());
-        }
+        }*/
+        HttpSession session = request.getSession();
         CoreAccount account = (CoreAccount) session.getAttribute("loginAccount");
         if(account != null){
             logger.info("[LoginInterceptor]登录检测:用户已登录,执行操作!");
             return true;
         }
-        response.sendRedirect("/static/public/html/404html/404.html");
+        response.sendRedirect("/static/public/html/login/login.html");
         logger.info("[LoginInterceptor]登录检测:用户未登录,请重新登录!");
         return false;
     }
