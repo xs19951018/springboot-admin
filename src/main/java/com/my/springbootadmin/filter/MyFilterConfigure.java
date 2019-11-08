@@ -9,7 +9,7 @@ import javax.servlet.Filter;
 @Configuration
 public class MyFilterConfigure {
 
-    @Bean
+    /*@Bean
     public FilterRegistrationBean myFilterRegister(){
         FilterRegistrationBean filterRegister = new FilterRegistrationBean();
 
@@ -20,7 +20,7 @@ public class MyFilterConfigure {
         filterRegister.addInitParameter("paramName", "paramValue");
         filterRegister.setOrder(1);
         return filterRegister;
-    }
+    }*/
 
 
 }

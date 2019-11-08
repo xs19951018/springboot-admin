@@ -6,6 +6,10 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Configuration
 public class MyInterceptorConfigure implements WebMvcConfigurer {
 
@@ -14,10 +18,12 @@ public class MyInterceptorConfigure implements WebMvcConfigurer {
     @Autowired
     private LoginInterceptor loginInterceptor;
 
+    private List<String> excludePath = new ArrayList<String>(Arrays.asList("/static/**","/public/**","/favicon.ico"));
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(myInterceptor).addPathPatterns("/hello");
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/static/**");
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns(excludePath);
     }
 
     @Override
