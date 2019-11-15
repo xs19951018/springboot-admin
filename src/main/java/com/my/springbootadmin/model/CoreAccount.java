@@ -50,4 +50,15 @@ public class CoreAccount {
     public void setCaOrder(Integer caOrder) {
         this.caOrder = caOrder;
     }
+
+    @Override
+    public String toString() {
+        return "CoreAccount{" +
+                "caUuid='" + caUuid + '\'' +
+                ", caUserName='" + caUserName + '\'' +
+                ", caPassword='" + caPassword + '\'' +
+                ", telphone=" + telphone +
+                ", caOrder=" + caOrder +
+                '}';
+    }
 }

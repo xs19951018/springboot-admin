@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
 import java.util.UUID;
 
 @Data
@@ -13,7 +14,14 @@ public class CoreTimer {
     @Id
     private String ctUuid;
     private String ctName;
+    //service接口名称
+    private String ctServiceName;
+    //method方法名称
+    private String ctMethodName;
     private String ctCron;
+    private Date ctCreateTime;
+    private Date ctUpdateTime;
+    private Integer ctStatus;
     private Integer ctOrder;
 
     public static void main(String[] args) {
