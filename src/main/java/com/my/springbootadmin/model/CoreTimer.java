@@ -1,14 +1,18 @@
 package com.my.springbootadmin.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Columns;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.UUID;
 
 @Data
 @Entity
+@org.hibernate.annotations.Table(appliesTo = "core_timer", comment = "定时任务表")
 public class CoreTimer {
 
     @Id
@@ -21,6 +25,7 @@ public class CoreTimer {
     private String ctCron;
     private Date ctCreateTime;
     private Date ctUpdateTime;
+    @Column(nullable = false,columnDefinition = "comment '状态0禁止,1启用'")
     private Integer ctStatus;
     private Integer ctOrder;
 

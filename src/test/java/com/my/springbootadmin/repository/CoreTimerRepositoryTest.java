@@ -64,4 +64,8 @@ public class CoreTimerRepositoryTest {
     public void delete(){
         coreTimerRepository.deleteById("1");
     }
+
+    @Test
+    public void updateByCondition(){
+    }
 }
