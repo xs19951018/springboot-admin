@@ -143,7 +143,4 @@ public class ScheduledTaskServiceImpl implements ScheduledTaskService {
         return coreTimerRepository.findAll();
     }
 
-    @Override
-    public void updateTask(String uuid) {
-    }
 }
