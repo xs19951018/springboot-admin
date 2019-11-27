@@ -8,7 +8,7 @@ public class CoreAccount {
     private String caUuid;
     private String caUserName;
     private String caPassword;
-    private Integer telphone;
+    private String telphone;
     private Integer caOrder;
 
     public String getCaUuid() {
@@ -35,11 +35,11 @@ public class CoreAccount {
         this.caPassword = caPassword;
     }
 
-    public Integer getTelphone() {
+    public String getTelphone() {
         return telphone;
     }
 
-    public void setTelphone(Integer telphone) {
+    public void setTelphone(String telphone) {
         this.telphone = telphone;
     }
 

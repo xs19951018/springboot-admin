@@ -27,4 +27,10 @@ public interface CoreTimerService {
      */
     void deleteByUuid(String uuid);
 
+    /**
+     * 根据uuid查询任务
+     * @param uuid
+     * @return
+     */
+    CoreTimer getOne(String uuid);
 }

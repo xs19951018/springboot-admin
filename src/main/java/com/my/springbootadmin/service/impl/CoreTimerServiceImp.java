@@ -41,4 +41,13 @@ public class CoreTimerServiceImp implements CoreTimerService {
         //停止定时任务
         scheduledTaskService.stop(uuid);
     }
+
+    @Override
+    public CoreTimer getOne(String uuid) {
+        Optional<CoreTimer> optional = coreTimerRepository.findById(uuid);
+        if(!optional.isPresent()){
+            return null;
+        }
+        return optional.get();
+    }
 }

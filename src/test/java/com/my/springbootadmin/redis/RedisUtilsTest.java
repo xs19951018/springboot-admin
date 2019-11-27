@@ -1,5 +1,7 @@
 package com.my.springbootadmin.redis;
 
+import com.my.springbootadmin.model.CoreAccount;
+import com.my.springbootadmin.model.CoreTimer;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,12 +11,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -25,6 +25,8 @@ public class RedisUtilsTest {
 
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate1;
 
     @Test
     public void test1(){
@@ -47,6 +49,33 @@ public class RedisUtilsTest {
     }
 
     @Test
+    public void test1_1(){
+        //redis能够存储的数据结构:string | list(链表) | set(集合) | zset(sorted set-有序集合) | hash(哈希)
+
+        //1.string
+        //设值set
+        CoreAccount account = new CoreAccount();
+        account.setCaUuid("11");
+        account.setCaUserName("小明");
+        account.setCaPassword("xm123456");
+        account.setTelphone("13534567654");
+        account.setCaOrder(11);
+
+        CoreTimer timer = new CoreTimer();
+        timer.setCtUuid("2");
+        timer.setCtName("ceshi");
+        timer.setCtServiceName("organ");
+        timer.setCtMethodName("getorgan");
+
+        redisTemplate1.opsForValue().set("account", account);
+        redisTemplate1.opsForValue().set("timer", timer);
+        Object account1 = redisTemplate1.opsForValue().get("account");
+        System.out.println(redisTemplate1.opsForValue().get("account"));
+        System.out.println(redisTemplate1.opsForValue().get("timer"));
+
+    }
+
+    @Test
     public void test2(){
         //redis能够存储的数据结构:string | list(链表) | set(集合) | zset(sorted set-有序集合) | hash(哈希)
 
@@ -63,6 +92,7 @@ public class RedisUtilsTest {
         System.out.println("list:"+redisTemplate.opsForList().range("list", 0, -1));
         //remove
         redisTemplate.opsForList().remove("list", 0, "apple");
+        List<String> list = redisTemplate.opsForList().range("list", 0, -1);
         System.out.println("list:"+redisTemplate.opsForList().range("list", 0, -1));
         //index
         String value = redisTemplate.opsForList().index("list", 0);
@@ -95,6 +125,7 @@ public class RedisUtilsTest {
         System.out.println(redisTemplate.opsForHash().size("hash"));
         //delete
         redisTemplate.opsForHash().delete("hash", "age");
+        Map<Object, Object> hash = redisTemplate.opsForHash().entries("hash");
         System.out.println(redisTemplate.opsForHash().entries("hash"));
     }
 
@@ -114,6 +145,7 @@ public class RedisUtilsTest {
         //move
         redisTemplate.opsForSet().move("set", "ccc", "set2");
         System.out.println(redisTemplate.opsForSet().members("set"));
+        Set<String> set2 = redisTemplate.opsForSet().members("set2");
         System.out.println(redisTemplate.opsForSet().members("set2"));
 
     }
@@ -131,6 +163,7 @@ public class RedisUtilsTest {
         System.out.println(redisTemplate.opsForZSet().range("zset", 0, -1));
         //remove
         redisTemplate.opsForZSet().remove("zset", "111");
+        Set<String> zset = redisTemplate.opsForZSet().range("zset", 0, -1);
         System.out.println(redisTemplate.opsForZSet().range("zset", 0, -1));
         //count
         System.out.println(redisTemplate.opsForZSet().count("zset", 0, -1));
