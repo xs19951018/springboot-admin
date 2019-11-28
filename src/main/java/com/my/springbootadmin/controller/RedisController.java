@@ -3,6 +3,7 @@ package com.my.springbootadmin.controller;
 import com.my.springbootadmin.model.CoreAccount;
 import com.my.springbootadmin.model.CoreTimer;
 import com.my.springbootadmin.service.CoreTimerService;
+import com.my.springbootadmin.service.RedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -24,6 +25,8 @@ public class RedisController {
 
     @Autowired
     private CoreTimerService coreTimerService;
+    @Autowired
+    private RedisService redisService;
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -42,6 +45,18 @@ public class RedisController {
             }
         }
         return coreTimer;
+    }
+
+   @ResponseBody
+    @RequestMapping("/getTimer")
+    public CoreTimer getTimer(@Param("uuid") String uuid){
+        return redisService.findById(uuid);
+    }
+
+    @ResponseBody
+    @RequestMapping("/getAll")
+    public List<CoreTimer> getAll(){
+        return redisService.findAll();
     }
 
 }
