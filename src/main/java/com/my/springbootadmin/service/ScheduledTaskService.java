@@ -24,6 +24,4 @@ public interface ScheduledTaskService {
     //查询任务列表
     List<CoreTimer> listAll();
 
-    //修改任务
-    void updateTask(String uuid);
 }

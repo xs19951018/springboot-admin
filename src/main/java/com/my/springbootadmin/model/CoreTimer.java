@@ -7,13 +7,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
 @Data
 @Entity
 @org.hibernate.annotations.Table(appliesTo = "core_timer", comment = "定时任务表")
-public class CoreTimer {
+public class CoreTimer implements Serializable {
 
     @Id
     private String ctUuid;

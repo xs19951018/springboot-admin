@@ -15,4 +15,7 @@ public interface CoreTimerRepository extends JpaRepository<CoreTimer, String> {
     @Query("update CoreTimer c set c.ctName = :name where c.ctUuid = :id")
     Integer updateCoreNameByCoreUuid(@Param("id") String id, @Param("name") String name);
 
+    @Modifying
+    @Query("update CoreTimer c set c.ctCron = :ctCron where c.ctUuid = :ctUuid")
+    Integer updateCronByUuid(@Param("ctUuid") String ctUuid, @Param("ctCron") String ctCron);
 }
