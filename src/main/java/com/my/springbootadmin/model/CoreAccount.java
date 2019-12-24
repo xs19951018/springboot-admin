@@ -1,10 +1,22 @@
 package com.my.springbootadmin.model;
 
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * 账户表
  */
+@Data
+@Entity
+@org.hibernate.annotations.Table(appliesTo = "core_account", comment = "账户表")
 public class CoreAccount {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String caUuid;
     private String caUserName;
     private String caPassword;

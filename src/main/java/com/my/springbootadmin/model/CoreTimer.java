@@ -29,12 +29,4 @@ public class CoreTimer {
     private Integer ctStatus;
     private Integer ctOrder;
 
-    public static void main(String[] args) {
-        CoreTimer timer = new CoreTimer();
-        timer.setCtUuid(UUID.randomUUID().toString());
-        timer.setCtName("统计在线人数");
-        timer.setCtCron("");
-        timer.setCtOrder(1);
-
-    }
 }
