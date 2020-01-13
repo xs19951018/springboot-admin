@@ -15,7 +15,7 @@ import java.util.Date;
 public class UserLog implements Serializable {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)  //必须为integer
     private String ulUuid;
     private String ulCaUuid;
     private String ulName;
