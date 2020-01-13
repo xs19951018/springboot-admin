@@ -2,8 +2,10 @@ package com.my.springbootadmin.controller;
 
 import com.my.springbootadmin.model.CoreAccount;
 import com.my.springbootadmin.model.UserLog;
+import com.my.springbootadmin.rabbitmq.RabbitmqConfig;
 import com.my.springbootadmin.scheduleTask.DynamicScheduleTask;
 import com.my.springbootadmin.service.CoreAccountService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.data.repository.query.Param;
@@ -22,6 +24,8 @@ public class CoreAccountController {
     private CoreAccountService accountService;
     @Autowired
     private Environment env;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @RequestMapping("/doLogin")
     public String doLogin(@Param("account")CoreAccount account){
@@ -33,12 +37,16 @@ public class CoreAccountController {
             userLog.setUlCaUuid(user.getCaUuid());
             userLog.setUlName(user.getCaUserName());
             userLog.setUlLoginTime(new Date());
-           /* rabbitTemplate.convertAndSend(env.getProperty("log.user.exchange.name"),
-                    env.getProperty("log.user.queue.name"), userLog);*/
-
+            rabbitTemplate.convertAndSend(env.getProperty("log.user.login.exchange.name"),
+                    env.getProperty("log.user.login.routing.key.name"), userLog);
         }else{
             return "false";
         }
         return "success";
+    }
+
+    @RequestMapping("/run")
+    public String run(){
+        return "已进入...";
     }
 }
