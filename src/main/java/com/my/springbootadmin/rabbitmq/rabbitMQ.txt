@@ -1,0 +1,8 @@
+exchange四种：
+    directExchange：默认交换机，直接使用routingKey匹配
+    topicExchange：主题模式、通配模式交换机，按照一定的规则转发消息
+            TopicExchange交换机支持使用通配符*、#
+            *号只能向后多匹配一层路径。
+            #号可以向后匹配多层路径。
+    headersExchange：根据请求消息中设置的header attribute参数类型来匹配的（和routingKey没有关系）
+    fanoutExchange：广播模式、订阅模式交换机，发送消息到所有绑定了此交换机的所有队列（和routingKey没有关系）

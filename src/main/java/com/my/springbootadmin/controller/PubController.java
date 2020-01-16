@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/login")
-public class CoreAccountController {
+@RequestMapping("/public")
+public class PubController {
 
     @Autowired
     private CoreAccountService accountService;
