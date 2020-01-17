@@ -1,4 +1,4 @@
-package com.my.springbootadmin.service;
+package com.my.springbootadmin.mail;
 
 /**
  * 邮件接口

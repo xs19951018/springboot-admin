@@ -1,6 +1,4 @@
-package com.my.springbootadmin.service.impl;
-
-import com.my.springbootadmin.service.Mail;
+package com.my.springbootadmin.mail;
 
 import java.util.Properties;
 
@@ -11,8 +9,11 @@ public class QQMail implements Mail {
 
     @Override
     public Integer sendMail(String reveiver, Object content) {
+        //创建一个配置文件
         Properties properties = new Properties();
-        properties.put("", "");
+        properties.setProperty("mail.host","smtp.qq.com");
+        properties.setProperty("mail.transport.protocol","smtp");
+        properties.setProperty("mail.smtp.auth","true");
 
 
         return null;
