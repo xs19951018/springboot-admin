@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/public")
+@RequestMapping("/pub")
 public class PubController {
 
     @Autowired

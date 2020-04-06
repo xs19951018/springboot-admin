@@ -84,9 +84,9 @@ public class RabbitmqConfig {
     public Queue logUserLoginQueue(){
         return new Queue(env.getProperty("log.user.login.queue.name"));
     }
-    @Bean(name = "userLoginMailQueue")
-    public Queue userLoginMailQueue(){
-        return new Queue(env.getProperty("user.login.mail.queue.name"));
+    @Bean(name = "mailQueue")
+    public Queue mailQueue(){
+        return new Queue(env.getProperty("mail.queue.name"));
     }
 
     @Bean
@@ -94,8 +94,8 @@ public class RabbitmqConfig {
         return new DirectExchange(env.getProperty("log.user.login.exchange.name"));
     }
     @Bean
-    public DirectExchange userLoginMailExchange(){
-        return new DirectExchange(env.getProperty("user.login.mail.exchange.name"));
+    public DirectExchange mailExchange(){
+        return new DirectExchange(env.getProperty("mail.exchange.name"));
     }
 
     @Bean
@@ -103,7 +103,7 @@ public class RabbitmqConfig {
         return BindingBuilder.bind(logUserLoginQueue()).to(logUserLoginExchange()).with(env.getProperty("log.user.login.routing.key.name"));
     }
     @Bean
-    public Binding userLoginMailBinding(){
-        return BindingBuilder.bind(userLoginMailQueue()).to(userLoginMailExchange()).with(env.getProperty("user.login.mail.routing.key.name"));
+    public Binding mailBinding(){
+        return BindingBuilder.bind(mailQueue()).to(mailExchange()).with(env.getProperty("mail.routing.key.name"));
     }
 }

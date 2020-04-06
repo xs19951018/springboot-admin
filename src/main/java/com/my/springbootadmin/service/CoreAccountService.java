@@ -13,4 +13,18 @@ public interface CoreAccountService {
      * @return
      */
     CoreAccount selectByNameAndPwd(CoreAccount model);
+
+    /**
+     * 通过姓名，查找用户
+     * @param model
+     * @return
+     */
+    CoreAccount selectByName(CoreAccount model);
+
+    /**
+     * 通过姓名更新密码
+     * @param model
+     * @return
+     */
+    Integer updatePasswordByName(CoreAccount model);
 }

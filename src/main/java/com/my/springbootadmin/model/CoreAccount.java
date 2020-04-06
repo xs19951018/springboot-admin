@@ -21,6 +21,7 @@ public class CoreAccount {
     private String caUserName;
     private String caPassword;
     private String telphone;
+    private String email;
     private Integer caOrder;
 
     public String getCaUuid() {
@@ -63,13 +64,21 @@ public class CoreAccount {
         this.caOrder = caOrder;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     @Override
     public String toString() {
         return "CoreAccount{" +
                 "caUuid='" + caUuid + '\'' +
                 ", caUserName='" + caUserName + '\'' +
                 ", caPassword='" + caPassword + '\'' +
-                ", telphone=" + telphone +
+                ", telphone='" + telphone + '\'' +
+                ", email='" + email + '\'' +
                 ", caOrder=" + caOrder +
                 '}';
     }

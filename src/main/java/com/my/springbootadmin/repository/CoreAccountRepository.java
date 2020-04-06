@@ -13,4 +13,11 @@ import org.springframework.data.repository.query.Param;
 public interface CoreAccountRepository extends JpaRepository<CoreAccount, String> {
 
     CoreAccount findByCaUserNameAndCaPassword(String username, String password);
+
+    CoreAccount findByCaUserName(String username);
+
+    @Modifying
+    @Query("update CoreAccount c set c.caPassword = :password where c.caUserName = :name")
+    Integer updatePasswordByName(@Param("password") String password, @Param("name") String name);
+
 }
