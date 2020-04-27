@@ -40,6 +40,12 @@ public class RabbitmqConfig {
         factory.setPrefetchCount(1);
         factory.setTxSize(1);
         factory.setAcknowledgeMode(AcknowledgeMode.AUTO);
+
+        //设置是否启动 rabbitMq
+        if (!Boolean.valueOf(env.getProperty("start.runMq"))) {
+            //是否自动启动
+            factory.setAutoStartup(false);
+        }
         return factory;
     }
 
